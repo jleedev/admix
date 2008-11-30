@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -O
-FC = g77
+FC = gfortran
 FFLAGS = -O
 LIBS = -lm
 
