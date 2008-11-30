@@ -1,0 +1,26 @@
+echo testing count ...
+../count -M "0" count-test.loc ldtest-test.ped testout testout2
+cmp testout count-test.afreq
+cmp testout2 count-test.gfreq
+echo testing admix ...
+../admix -q -g .1 -M "0" admix-test.loc admix-test.ped testout
+cmp testout admix-test.out
+../admix -q -m mlist59-even -M "0" ldtest-test.loc ldtest-test.ped testout
+cmp testout admix-test.59-even
+echo testing ldtest ...
+../ldtest -M "0" -m mlist84-odd ldtest-test.ped count-test.afreq testout
+diff testout ldtest-test.out | head -20
+echo testing hetfst ...
+../hetfst -M "0" ldtest-test.ped count-test.gfreq testout testout2
+cmp testout hetfst-test.het
+cmp testout2 hetfst-test.fst
+echo testing inform ...
+../inform -aq -p inform-test.plist -m inform-test.mlist -o testout inform-test.loc
+cmp testout inform-test.out
+../inform -aq -g .05 -o testout inform-test.loc
+cmp testout inform-test.grid
+../inform -aq admix-2pop.loc .75
+./ckinf-2pop .75
+../inform -aq admix-3pop.loc .25 .611
+./ckinf-3pop .25 .611
+rm testout testout2

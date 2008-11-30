@@ -1,0 +1,344 @@
+POPULATION ADMIXTURE ESTIMATION
+
+  This document describes a set of programs for individual admixture estimation
+  and related computational tasks. These programs include:
+
+    admix     For each member of a set of individuals, estimate that person's
+                population admixture given his/her genotypes at each of a
+                set of reference markers and the population-specific allele
+                frequencies for those markers.
+
+    inform    Compute the informativeness of a set of markers for estimating
+                individual admixture from a set of ancestral populations.
+
+    ldtest    Test for allelic linkage disequilibrium between marker loci.
+
+    hwtest    Test for Hardy-Weinberg equilibrium at a marker.
+
+    hetfst    Compute marker heterozygosity and Wright's locus-specific F
+                statistic, F_st.
+
+    count     Calculate allele and genotype frequencies based on the genotype
+                data for a set of individuals.
+
+  These programs were designed and written by Thomas Dyer and Jill Barnholtz-Sloan,
+  copyright 2003, 2004, 2005.
+
+
+BUILDING THE PROGRAMS
+
+  The programs are written in C and Fortran. A Makefile is supplied which is
+  suitable for use with the GNU compilers gcc and g77. To compile the programs,
+  simply enter the command
+
+    make all
+
+  The programs have been successfully tested on the Solaris, Solaris x86, and
+  Linux (Fedora Core 4) platforms.
+
+
+USING THE PROGRAMS
+
+  admix
+  =====
+
+    This program reads the marker genotype data for a set of individuals
+    and computes maximum likelihood estimates of population admixture.
+    These estimates are derived using the allele frequencies observed in
+    the parent populations.
+
+
+    Usage:  admix [-q] [-M missval] [-m mlist] [-g gridint] locfile
+                  pedfile outfile
+
+            locfile      locus file (marker info)
+            pedfile      pedigree file (marker genotypes)
+            outfile      output file
+
+            options:
+              -M missval   missing allele value in quotes, e.g. "0"
+              -m mlist     read sets of markers from file mlist
+              -g gridint   starting interval for grid search
+              -q           suppress warning messages
+
+      The missing allele value is used in genotypes to denote an untyped
+      allele. The default missing value is an asterisk (*).
+
+      Maximum likelihood estimates are found by searching over a grid
+      of admixture proportions. The maximization procedure begins with
+      a relatively coarse grid, determines the grid point for which the
+      likelihood is maximized, and then conducts a search in the vicinity
+      of this point with a finer grid (the interval is divided by 10).
+      This process is repeated until the grid interval is less than or
+      equal to 0.001. The default starting grid interval is 0.01.
+
+    File formats:
+
+      The locus file contains a set of lines for each marker. The first
+      line in each set contains the marker name. The lines which follow
+      contain per-population marker allele frequency information, one
+      line per allele.  Each allele info line is blank- or tab-delimited
+      and contains the allele name followed by one or more population
+      allele frequencies.  The order of the allele frequencies is fixed,
+      i.e. the i-th allele frequency on every allele info line is for the
+      same population (the i-th population) and every allele info line
+      must contain the same number of allele frequencies. Marker names
+      and allele names can be arbitrary character strings but cannot
+      contain embedded blanks or tabs.
+
+      The pedigree file is blank- or tab-delimited and consists of one
+      line per individual. Each line contains the following fields:
+      family ID, individual ID, affection status (coded U/A or 1/2 for
+      unaffected/affected), population ID, sex (coded M/F or 1/2 for
+      male/female), and marker genotypes, one for each marker, in the
+      order specified in the locus file. Each marker genotype consists
+      of a pair of alleles separated by a blank or tab. Individual,
+      family, and population IDs can be arbitrary character strings but
+      cannot contain embedded blanks or tabs.
+
+      In the example input files below, there are two marker genotypes
+      for one individual.
+
+        Locus file:
+          marker1
+          D23S999
+
+        Pedigree file:
+          Blow Joe 1 Caucasian M A a 123 131
+
+
+       The output file reports the maximum likelihood estimate of
+       population admixture, and its standard error, for each individual.
+
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  inform
+  ======
+
+    This program computes the informativeness of a set of markers for
+    estimating individual admixture from a set of ancestral populations.
+    The expected information with respect to a particular set of
+    admixture proportions is given by the determinant of a matirx with
+    elements equal to the negative expected second partial derivative
+    of the log likelihood function (the information matrix), which is
+    derived using the marker allele frequencies observed in the parent
+    populations.
+
+
+    Usage:  inform [-aq] [-p plist] [-m mlist] [-g gridint] [-o ofile]
+                   locfile [m1 ...]
+
+            locfile      population-specific allele frequencies
+            m1 ...       admixture proportions (optional)
+
+            options:
+              -p plist     read sets of admix proportions from file plist
+              -m mlist     read sets of markers from file mlist
+              -a           use all markers simultaneously
+              -g gridint   grid interval
+              -o ofile     output file
+              -q           suppress warning messages
+
+      If admixture proportions are not specified on the command line,
+      informativeness is calculated at each point in an equally-spaced
+      grid of proportions.
+
+
+    File formats:
+
+      The locus file is the same as that used by program admix and
+      is described in the documentation for admix.
+
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  ldtest
+  ======
+
+    This program tests for allelic linkage disequilibrium between marker
+    loci. A test of 2-locus LD is performed for each ordered combination
+    of two markers among the set of markers in the locus file, i.e. the
+    first marker in the locus file is compared with the second marker,
+    the second marker is compared with the third marker, the third marker
+    with the fourth, and so on. If three or more markers are specified,
+    a test of 3-locus LD is also performed for each ordered combination
+    of three markers.
+
+    Note that if the locus file includes markers located on more than one
+    chromosome, LD tests will be made across chromosomal boundaries. Such
+    tests should of course be ignored. The set of markers tested does not
+    have to include all markers in the locus file, nor do the combinations
+    of markers tested have to follow locus file order. A list of markers
+    to be tested can be supplied and those markers will be compared in
+    the order in which they occur in the list.
+
+
+    Usage:  ldtest [-m mlist] [-M missval] pedfile allfreq outfile
+
+            pedfile      pedigree file (marker genotypes)
+            allfreq      allele frequencies file
+            outfile      output file
+
+            options:
+              -m mlist     read markers to be tested from file mlist
+              -M missval   missing allele value in quotes, e.g. "0"
+
+      The marker list file consists of marker names, one name per line.
+
+      The missing allele value is used in genotypes to denote an untyped
+      allele. The default missing value is an asterisk (*).
+
+
+    File formats:
+
+      The pedigree file is the same as that used by program admix and
+      is described in the documentation for admix.
+
+      The allele frequencies file is generated by program count and is
+      described in the documentation for count.
+
+      The output file reports, for each combination of alleles from each
+      set of two (or three) markers, the frequency of that combination of
+      alleles, the allelic disequilibrium, the chi-square statistic for
+      testing whether the disequilibrium differs significantly from zero,
+      and 1 minus the p-value associated with that statistic.
+
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  hwtest
+  ======
+
+    This program tests a marker locus for Hardy-Weinberg equilibrium. If
+    the marker has three or more alleles, an input file is created for the
+    program HWE (Guo and Thompson, 1992) which is then run to perform the
+    exact test of Hardy-Weinberg proportion for multiple alleles. For a
+    marker with fewer than three alleles, a chi-square test is performed.
+
+
+    Usage:  hwtest [-au] [-p pop_id] [-o outfile] allfrq genfrq marker
+
+            allfrq       allele frequencies input file
+            genfrq       genotype frequencies input file
+            marker       marker to be tested
+
+            options:
+              -a           include affecteds only
+              -u           include unaffecteds only
+              -p pop_id    include population pop_id only
+              -o outfile   output file (required for program HWE)
+
+      Note that if the marker being tested has more than 2 alleles, in
+      which case program HWE will be run, an output file must be specified.
+
+
+    File formats:
+
+      The allele and genotype frequency files are generated by program
+      count and are described in the documentation for count.
+
+      The HWE input file is created in free format. The first line of the
+      file contains the number of alleles, n. The next n lines contain the
+      lower triangular entries of the observed genotype matrix. The first of
+      these lines has a single entry, the observed number of occurrences of
+      the genotype a1/a1, where a1 is the first of the n alleles. The next
+      line has two entries, the number of occurrences of the genotypes a2/a1
+      and a2/a2. And so forth. The last line of the input file contains the
+      number of dememorization steps, the number of batches, and the size of
+      each batch.
+
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  hetfst
+  ======
+
+    This program calculates marker heterozygosity and Wright's locus-
+    specific F statistic, F_st. Marker heterozygosity and its variance
+    are computed for each population and for the total sample. F_st is
+    derived both analytically and by jackknifing, and is reported for
+    affected individuals, unaffected individuals, and the total sample.
+    Jackknifing also yields an estimate of the variance in F_st.
+
+
+    Usage:  hetfst [-M missval] pedfile genfrq hetout fstout
+
+            pedfile      pedigree file (marker genotypes)
+            genfrq       genotype frequencies file
+            hetout       heterozygosity output file
+            fstout       F statistics output file
+
+            options:
+              -M missval   missing allele value in quotes, e.g. "0"
+
+      The missing allele value is used in genotypes to denote an untyped
+      allele. The default missing value is an asterisk (*).
+
+
+    File formats:
+
+      The pedigree file is the same as that used by program admix and
+      is described in the documentation for admix.
+
+      The genotype frequencies file is generated by program count and
+      is described in the documentation for count.
+
+      The first output file reports the heterozygosity and its variance
+      for each marker, first for the total sample and then for each of
+      the populations. The second output file gives the analytic and
+      jackknifed estimates of F_st and its variance for each marker,
+      first for all individuals in the sample and then for unaffecteds
+      and affecteds.
+
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  count
+  =====
+
+    This program reads the genotype data for a set of individuals and
+    generates a tally of the marker alleles and genotypes. Allele and
+    genotype counts are broken down both by population and affection
+    status. The counts are stored in files, one for allele counts and
+    one for genotype counts, which are used by various other programs.
+
+
+    Usage:  count [-M missval] locfile pedfile afrqout gfrqout
+
+            locfile      locus file (marker names)
+            pedfile      pedigree file (marker genotypes)
+            afrqout      allele frequencies output file
+            gfrqout      genotype frequencies output file
+
+            options:
+              -M missval   missing allele value in quotes, e.g. "0"
+
+      The missing allele value is used in genotypes to denote an untyped
+      allele. The default missing value is an asterisk (*).
+
+
+    File formats:
+
+      The locus file is simply a list of marker names, one name per line,
+      in the order that the corresponding marker genotypes occur in the
+      pedigree file. If a locus file containing allele frequencies (as
+      described in the documentation for program admix) is used, the lines
+      containing allele frequencies are simply ignored.
+
+      The pedigree file is the same as that used by admix and is described
+      in the documentation for admix.
+
+      There are two blank-delimited output files - one for allele counts,
+      the other for genotype counts. The first three fields on each line
+      of these files are: marker name, affection status, and population ID.
+      These fields are followed by an allele (or genotype) name, the number
+      of occurrences of that allele (or genotype) among individuals within
+      the specified population and having the specified affection status,
+      and the corresponding allele (genotype) frequency. If the affection
+      status field contains a hyphen (-), the count and frequency are for
+      unaffected and affected indviduals combined. If the population ID
+      field contains a hyphen, the count and frequency are for all
+      populations combined. For example, the following line from a genotype
+      counts file shows that there are 17 affected individuals in all
+      populations combined who have the genotype 290/312 at marker D19S571,
+      yielding a genotype frequency of 0.18478.
+
+          D19S571 a - 290 312 17 0.18478
+
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -1,0 +1,15 @@
+m1=$1
+m2=$2
+i=1
+while [ $i -lt 3 ]
+do
+i=`expr $i + 1`
+j=1
+while [ $j -lt 3 ]
+do
+j=`expr $j + 1`
+awk '{if(NF==4){d=$4+'$m1'*($2-$4)+'$m2'*($3-$4);n=($'$i'-$4)*($'$j'-$4);if(d>0)inf+=n/d}}END{print 2*inf}' admix-3pop.loc >> tmp$$
+done
+done
+awk '{inf[NR]=$0}END{print inf[1]*inf[4]-inf[2]*inf[3]}' tmp$$
+rm tmp$$
