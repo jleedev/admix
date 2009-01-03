@@ -18,8 +18,6 @@ module Admix
           end
         end
       end
-
-      IO.popen "orig/admix"
     end
 
     def out
