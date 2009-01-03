@@ -1,6 +1,11 @@
 $: << File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib')
 
+require 'rubygems'
+require 'sinatra'
+require 'sinatra/test/rspec'
+
 require 'admix'
+require 'admixweb'
 
 module Admix
 
@@ -17,6 +22,13 @@ module Admix
       lambda {
         AdmixWrapper.new :loc => "", :pred => ""
       }.should raise_error AdmixError
+    end
+  end
+
+  describe "AdmixWeb" do
+    it "should have a / page" do
+      get_it "/"
+      @response.should be_ok
     end
   end
 
