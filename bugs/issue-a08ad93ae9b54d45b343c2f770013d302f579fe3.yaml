@@ -11,8 +11,8 @@ reporter: Steven Dee <steve@smartercode.net>
 status: :unstarted
 disposition: 
 creation_time: 2009-01-03 09:11:00.605794 Z
-references: []
-
+references: 
+- http://sinatra.rubyforge.org/
 id: a08ad93ae9b54d45b343c2f770013d302f579fe3
 log_events: 
 - - 2009-01-03 09:11:44.347216 Z
@@ -20,5 +20,8 @@ log_events:
   - created
   - |-
     After evaluating Rails, Django, Merb, and a number of other frameworks,
-    we're thinking that we'll probably use Sinatra
-    <http://sinatra.rubyforge.org/>.
+    we're thinking that we'll probably use Sinatra.
+- - 2009-01-03 09:30:49.938829 Z
+  - Steven Dee <steve@smartercode.net>
+  - added reference 1
+  - The Sinatra web framework. Lightweight, has everything we want, seems sane, works well.
