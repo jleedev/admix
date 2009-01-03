@@ -30,7 +30,7 @@ module Admix
 
     it "should complain on empty input" do
       lambda {
-        AdmixWrapper.new :loc => "", :pred => ""
+        AdmixWrapper.new :loc => "", :ped => ""
       }.should raise_error AdmixError
     end
   end
