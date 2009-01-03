@@ -21,7 +21,7 @@ module Admix
   describe AdmixWrapper do
     it_should_behave_like "make test data available"
 
-    it "should pass the admix tests" do
+    it "should pass the admix test" do
       run_test do |data|
         admix = AdmixWrapper.new data
         admix.out
@@ -43,7 +43,7 @@ module Admix
       @response.should be_ok
     end
 
-    it "should also pass the admix tests" do
+    it "should also pass the admix test" do
       run_test do |data|
         post_it "/admix", data
         @response.body
