@@ -13,7 +13,7 @@ module Admix
         when 0
           @out = out.read
         else
-          throw result
+          raise AdmixError::new result
         end
       end
       end
@@ -24,4 +24,6 @@ module Admix
       return @out
     end
   end
+
+  class AdmixError < Exception; end
 end
