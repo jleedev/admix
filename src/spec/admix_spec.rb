@@ -49,6 +49,11 @@ module Admix
         @response.body
       end
     end
+
+    it "should report errors" do
+      post_it "/admix"
+      @response.should_not be_ok
+    end
   end
 
 end

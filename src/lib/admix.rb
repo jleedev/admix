@@ -14,7 +14,7 @@ module Admix
         when 0
           @out = out.read
         else
-          raise AdmixError::new result
+          raise AdmixError::new result.strip
         end
       end
       end

@@ -1,4 +1,4 @@
-$: << File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib')
+$: << File.join(File.expand_path(File.dirname(__FILE__)), 'lib')
 
 require 'rubygems'
 require 'sinatra'
@@ -13,8 +13,12 @@ EOHTML
   end
 
   post '/admix' do |*args|
-    admix = AdmixWrapper.new :loc => params[:loc], :ped => params[:ped]
-    admix.out
+    begin
+      admix = AdmixWrapper.new :loc => params[:loc], :ped => params[:ped]
+      admix.out
+    rescue AdmixError => e
+      throw :halt, [500, e.inspect]
+    end
   end
 
 end
