@@ -1,6 +1,7 @@
 require 'tempfile'
 
 module Admix
+
   class AdmixWrapper
     def initialize args
       Tempfile.open 'admix.loc' do |loc|
@@ -26,4 +27,5 @@ module Admix
   end
 
   class AdmixError < Exception; end
+
 end
