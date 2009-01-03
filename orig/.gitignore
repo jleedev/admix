@@ -1,0 +1,8 @@
+*.o
+admix
+count
+hetfst
+hwe
+hwtest
+inform
+ldtest
