@@ -11,8 +11,8 @@ module Admix
             result = `orig/admix -q -g .1 -M "0" #{loc.path} #{ped.path} #{out.path} 2>&1`
             case $?.exitstatus
             when 0
-              return out.read
-            when 1
+              @out = out.read
+            else
               throw result
             end
           end
