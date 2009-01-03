@@ -1,3 +1,4 @@
+#!/bin/sh
 echo testing count ...
 ../count -M "0" count-test.loc ldtest-test.ped testout testout2
 cmp testout count-test.afreq
