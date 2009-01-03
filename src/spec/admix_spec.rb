@@ -30,6 +30,14 @@ module Admix
       get_it "/"
       @response.should be_ok
     end
+
+    it "should also pass the admix tests" do
+      loc,ped,out = %w(loc ped out).collect do |ext|
+        File.read "orig/Test/admix-test." + ext
+      end
+      post_it "/admix", :loc => loc, :ped => ped
+      @response.body.should == out
+    end
   end
 
 end
