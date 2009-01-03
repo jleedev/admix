@@ -16,7 +16,7 @@ module Admix
       admix = AdmixWrapper.new :loc => params[:loc], :ped => params[:ped]
       admix.out
     rescue AdmixError => e
-      throw :halt, [500, e.inspect]
+      throw :halt, [500, "Error: #{e.message}"]
     end
   end
 
