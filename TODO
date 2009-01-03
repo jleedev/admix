@@ -1,2 +1,5 @@
- - write Python interfaces to the admixture programs
- - write a web frontend (Django probably?)
+test_driven do
+  finish Ruby interface to the admixture programs
+  write a web frontend (Sinatra probably?)
+  give admix a progress bar (for web nicety purposes)
+end
