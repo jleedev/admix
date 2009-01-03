@@ -10,6 +10,8 @@ describe Admix::AdmixWrapper do
   end
 
   it "should complain on empty input" do
-    lambda { Admix::AdmixWrapper.new :loc => "", :pred => "" }.should raise_error Admix::AdmixError
+    lambda {
+      Admix::AdmixWrapper.new :loc => "", :pred => ""
+    }.should raise_error Admix::AdmixError
   end
 end
