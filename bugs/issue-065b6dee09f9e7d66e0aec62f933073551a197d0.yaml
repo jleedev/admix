@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: give admix a progress bar
+desc: |-
+  admix can be slow. We should have a progress bar to alert people of how much time is
+  left.
+type: :task
+component: admix
+release: 
+reporter: Steven Dee <steve@smartercode.net>
+status: :unstarted
+disposition: 
+creation_time: 2009-01-03 09:15:33.470501 Z
+references: []
+
+id: 065b6dee09f9e7d66e0aec62f933073551a197d0
+log_events: 
+- - 2009-01-03 09:17:12.150680 Z
+  - Steven Dee <steve@smartercode.net>
+  - created
+  - ""
