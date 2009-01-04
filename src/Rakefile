@@ -20,3 +20,8 @@ end
 file 'bin/admix' => 'orig/admix' do
   cp 'orig/admix', 'bin/'
 end
+
+task :clean do
+  sh 'cd orig; make distclean'
+  rm 'bin/admix'
+end
