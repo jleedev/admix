@@ -46,6 +46,7 @@ module Admix
       run_test do |data|
         data.update :type => :text
         post_it "/admix", data
+        @response.should be_ok
         @response.content_type.should == 'text/plain'
         @response.body
       end
@@ -55,6 +56,7 @@ module Admix
       run_test do |data|
         data.update :type => :html
         post_it "/admix", data
+        @response.should be_ok
         @response.content_type.should == 'text/html'
         throw :no_results
       end
