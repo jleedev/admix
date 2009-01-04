@@ -2,7 +2,7 @@ require 'tempfile'
 
 module Admix
 
-  class AdmixWrapper
+  class Wrapper
     def self.call args
       Tempfile.open 'admix.loc' do |loc|
       (loc << args[:loc]).flush
