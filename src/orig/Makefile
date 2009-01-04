@@ -3,8 +3,9 @@ CFLAGS = -O
 FC = gfortran
 FFLAGS = -O
 LIBS = -lm
+PROGS=admix count hetfst hwe hwtest inform ldtest
 
-all: admix count hetfst hwe hwtest inform ldtest
+all: $(PROGS)
 
 admix.o: admix.c
 	$(CC) $(CFLAGS) -c admix.c
@@ -47,3 +48,6 @@ hwe:
 
 clean:
 	rm -f *.o
+
+distclean: clean
+	rm -f $(PROGS)
