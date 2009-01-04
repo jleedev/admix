@@ -33,23 +33,41 @@ module Admix
     end
   end
 
+  get "/style.css" do
+    content_type "text/css"
+
+    <<EOCSS
+form dd { margin: 1ex 0 1ex 15ex }
+form dt { float: left;
+          text-align: right;
+          width: 14ex;
+          margin: 0; }
+EOCSS
+  end
+
   template :index do <<EOHAML
 !!!
 %title Admix
+%link{ :rel => "stylesheet", :type => "text/css", :href => "style.css" }
 %form{ :action => "/admix", :method => "post", :enctype => "multipart/form-data"}
-  %label
-    Locus file
-    %input{ :name => :loc, :type => "file" }
-  %label
-    Pedigree file
-    %input{ :name => :ped, :type => "file" }
-  %label
-    %input{ :type => :radio, :name => :type, :value => :html }
-    HTML
-  %label
-    %input{ :type => :radio, :name => :type, :value => :text, :checked => true }
-    Plain text
-  %button Submit
+  %dl
+    %dt
+      %label{ :for => :loc } Locus file
+    %dd
+      %input{ :name => :loc, :id => :loc, :type => :file }
+    %dt
+      %label{ :for => :ped } Pedigree file
+    %dd
+      %input{ :name => :ped, :id => :ped, :type => :file }
+    %dd
+      %label
+        %input{ :type => :radio, :name => :type, :value => :html }
+        HTML
+      %label
+        %input{ :type => :radio, :name => :type, :value => :text, :checked => true }
+        Plain text
+    %dd
+      %button Submit
 EOHAML
   end
 
