@@ -21,14 +21,13 @@ module Admix
 
     it "should pass the admix test" do
       run_test do |data|
-        admix = AdmixWrapper.new data
-        admix.out
+        AdmixWrapper.call data
       end
     end
 
     it "should complain on empty input" do
       lambda {
-        AdmixWrapper.new :loc => "", :ped => ""
+        AdmixWrapper.call :loc => "", :ped => ""
       }.should raise_error AdmixError
     end
   end

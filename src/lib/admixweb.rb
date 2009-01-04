@@ -15,8 +15,7 @@ module Admix
 
   post '/admix' do |*args|
     begin
-      admix = AdmixWrapper.new :loc => params[:loc], :ped => params[:ped]
-      admix.out
+      AdmixWrapper.call :loc => params[:loc], :ped => params[:ped]
     rescue AdmixError => e
       throw :halt, [500, "Error: #{e.message}"]
     end

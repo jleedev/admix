@@ -3,7 +3,7 @@ require 'tempfile'
 module Admix
 
   class AdmixWrapper
-    def initialize args
+    def self.call args
       Tempfile.open 'admix.loc' do |loc|
       (loc << args[:loc]).flush
       Tempfile.open 'admix.ped' do |ped|
@@ -12,17 +12,13 @@ module Admix
         result = `orig/admix -q -g .1 -M "0" #{loc.path} #{ped.path} #{out.path} 2>&1`
         case $?.exitstatus
         when 0
-          @out = out.read
+          return out.read
         else
           raise AdmixError::new result.strip
         end
       end
       end
       end
-    end
-
-    def out
-      return @out
     end
   end
 
