@@ -10,8 +10,6 @@ require 'sinatra'
 
 module Admix
 
-  include AdmixWeb
-
   get '/' do
     haml :index
   end
@@ -22,7 +20,7 @@ module Admix
       case params[:type]
       when "html"
         content_type 'text/html'
-        Admix::prettify result
+        AdmixWeb::prettify result
       when "text"
         content_type 'text/plain'
         result
