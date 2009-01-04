@@ -12,7 +12,9 @@ module Admix
       loc,ped,out = %w(loc ped out).collect do |ext|
         File.read "orig/Test/admix-test." + ext
       end
-      (yield :loc => loc, :ped => ped).should == out
+      catch :no_results do
+        (yield :loc => loc, :ped => ped).should == out
+      end
     end
   end
 
@@ -42,7 +44,18 @@ module Admix
 
     it "should also pass the admix test" do
       run_test do |data|
+        data.update :type => :text
         post_it "/admix", data
+        @response.content_type.should == 'text/plain'
+        @response.body
+      end
+    end
+
+    it "should return some html" do
+      run_test do |data|
+        data.update :type => :html
+        post_it "/admix", data
+        @response.content_type.should == 'text/html'
         @response.body
       end
     end
