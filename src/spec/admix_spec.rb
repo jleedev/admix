@@ -12,7 +12,7 @@ module Admix
       loc,ped,out = %w(loc ped out).collect do |ext|
         File.read "orig/Test/admix-test." + ext
       end
-      out.should == (yield :loc => loc, :ped => ped)
+      (yield :loc => loc, :ped => ped).should == out
     end
   end
 
