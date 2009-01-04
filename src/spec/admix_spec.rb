@@ -34,7 +34,7 @@ module Admix
     end
   end
 
-  describe "AdmixWeb" do
+  describe AdmixWeb do
     it_should_behave_like "make test data available"
 
     it "should have a / page" do
@@ -56,13 +56,17 @@ module Admix
         data.update :type => :html
         post_it "/admix", data
         @response.content_type.should == 'text/html'
-        @response.body
+        throw :no_results
       end
     end
 
     it "should report errors" do
       post_it "/admix"
       @response.should_not be_ok
+    end
+
+    it "'s prettify method should work" do
+      (AdmixWeb::prettify "A   B  C\n1  2 3\n").should == "<tr><td>A<td>B<td>C\n<tr><td>1<td>2<td>3"
     end
   end
 
