@@ -10,6 +10,8 @@ require 'sinatra'
 
 module Admix
 
+  include AdmixWeb
+
   get '/' do
     haml :index
   end
