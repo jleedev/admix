@@ -1,6 +1,6 @@
-module Admix
+module AdmixWeb
 
-  def prettify str
+  def self.prettify str
     str
   end
 
