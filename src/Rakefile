@@ -4,6 +4,7 @@ require 'spec/rake/spectask'
 desc "Verify our specification"
 Spec::Rake::SpecTask.new 'spec' => 'orig/admix' do |t|
   t.spec_files = FileList['spec/*_spec.rb']
+  t.libs = ["lib"]
 end
 
 file 'orig/admix' do

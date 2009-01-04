@@ -106,7 +106,7 @@ def main():
     for changed_paths in change_generator():
         print_changes(changed_paths)
 
-        cmd = 'spec'
+        cmd = 'rake spec'
         modules = sys.argv[1:]
         cmd += ' ' + ' '.join(modules)
         os.system(cmd)
