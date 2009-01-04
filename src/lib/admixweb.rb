@@ -36,13 +36,13 @@ module Admix
   template :index do <<EOHAML
 !!!
 %title Admix
-%form{ :action => "/admix", :method => "post"}
+%form{ :action => "/admix", :method => "post", :enctype => "multipart/form-data"}
   %label
     Locus file
-    %textarea{ :name => :loc }
+    %input{ :name => :loc, :type => "file" }
   %label
     Pedigree file
-    %textarea{ :name => :ped }
+    %input{ :name => :ped, :type => "file" }
   %label
     %input{ :type => :radio, :name => :type, :value => :html }
     HTML
