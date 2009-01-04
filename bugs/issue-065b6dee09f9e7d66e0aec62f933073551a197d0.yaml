@@ -1,8 +1,8 @@
 --- !ditz.rubyforge.org,2008-03-06/issue 
 title: give admix a progress bar
 desc: |-
-  admix can be slow. We should have a progress bar to alert people of how much time is
-  left.
+  admix can be slow. We should have a progress bar to alert people of how much
+  time is left.
 type: :task
 component: admix
 release: 
