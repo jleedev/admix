@@ -16,18 +16,18 @@ module Admix
     end
   end
 
-  describe AdmixWrapper do
+  describe Wrapper do
     it_should_behave_like "make test data available"
 
     it "should pass the admix test" do
       run_test do |data|
-        AdmixWrapper.call data
+        Wrapper.call data
       end
     end
 
     it "should complain on empty input" do
       lambda {
-        AdmixWrapper.call :loc => "", :ped => ""
+        Wrapper.call :loc => "", :ped => ""
       }.should raise_error AdmixError
     end
   end
