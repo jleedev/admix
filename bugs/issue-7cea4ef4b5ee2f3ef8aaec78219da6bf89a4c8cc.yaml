@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Web output
+desc: We need the output of admix to look nice.
+type: :task
+component: AdmixWeb
+release: 
+reporter: Steven Dee <steve@smartercode.net>
+status: :unstarted
+disposition: 
+creation_time: 2009-01-04 04:47:36.284168 Z
+references: []
+
+id: 7cea4ef4b5ee2f3ef8aaec78219da6bf89a4c8cc
+log_events: 
+- - 2009-01-04 04:47:38.014172 Z
+  - Steven Dee <steve@smartercode.net>
+  - created
+  - ""
+git_branch: 
+claimer: 
