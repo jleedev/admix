@@ -1,1 +1,1 @@
-require 'admix/admix_wrapper'
+require 'admix/wrapper'
