@@ -1,6 +1,12 @@
 require 'rake'
 require 'spec/rake/spectask'
 
+task :default => :runserver
+
+task :runserver => 'spec' do
+  sh 'bin/admixweb'
+end
+
 desc "Verify our specification"
 Spec::Rake::SpecTask.new 'spec' => 'bin/admix' do |t|
   t.spec_files = FileList['spec/*_spec.rb']
