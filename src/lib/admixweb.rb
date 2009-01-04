@@ -20,7 +20,8 @@ module Admix
       case params[:type]
       when "html"
         content_type 'text/html'
-        AdmixWeb::prettify result
+        pretty = AdmixWeb::prettify result
+        haml :results, :locals => { :pretty => pretty }
       when "text"
         content_type 'text/plain'
         result
@@ -49,6 +50,13 @@ module Admix
     %input{ :type => :radio, :name => :type, :value => :text, :checked => true }
     Plain text
   %button Submit
+EOHAML
+  end
+
+  template :results do <<EOHAML
+!!!
+%title Admix Results
+%table= pretty
 EOHAML
   end
 
