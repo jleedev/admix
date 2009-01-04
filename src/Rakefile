@@ -8,8 +8,7 @@ Spec::Rake::SpecTask.new 'spec' => 'bin/admix' do |t|
 end
 
 file 'orig/admix' do
-  cd 'orig'
-  sh 'make'
+  sh 'cd orig; make'
 end
 
 file 'bin/admix' => 'orig/admix' do
