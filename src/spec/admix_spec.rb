@@ -65,7 +65,7 @@ module Admix
       @response.should_not be_ok
     end
 
-    it "'s prettify method should work" do
+    it "should prettify" do
       (AdmixWeb::prettify "A   B  C\n1  2 3\n").should == "<tr><td>A<td>B<td>C\n<tr><td>1<td>2<td>3"
     end
   end
