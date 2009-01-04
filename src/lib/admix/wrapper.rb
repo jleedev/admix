@@ -12,7 +12,7 @@ module Admix
       Tempfile.open 'admix.ped' do |ped|
       (ped << args[:ped]).flush
       Tempfile.open 'admix.out' do |out|
-        result = `orig/admix -q -g .1 -M "0" #{loc.path} #{ped.path} #{out.path} 2>&1`
+        result = `admix -q -g .1 -M "0" #{loc.path} #{ped.path} #{out.path} 2>&1`
         case $?.exitstatus
         when 0
           return out.read

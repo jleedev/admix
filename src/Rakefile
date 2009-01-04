@@ -2,7 +2,7 @@ require 'rake'
 require 'spec/rake/spectask'
 
 desc "Verify our specification"
-Spec::Rake::SpecTask.new 'spec' => 'orig/admix' do |t|
+Spec::Rake::SpecTask.new 'spec' => 'bin/admix' do |t|
   t.spec_files = FileList['spec/*_spec.rb']
   t.libs = ["lib"]
 end
@@ -10,4 +10,8 @@ end
 file 'orig/admix' do
   cd 'orig'
   sh 'make'
+end
+
+file 'bin/admix' => 'orig/admix' do
+  cp 'orig/admix', 'bin/'
 end

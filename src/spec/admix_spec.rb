@@ -5,6 +5,8 @@ require 'sinatra/test/rspec'
 require 'admix'
 require 'admixweb'
 
+ENV['PATH'] = File.join(File.dirname(__FILE__), %w(.. bin)) + ':' + ENV['PATH']
+
 module Admix
 
   describe "make test data available", :shared => true do
