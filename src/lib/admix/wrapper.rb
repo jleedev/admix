@@ -2,6 +2,9 @@ require 'tempfile'
 
 module Admix
 
+  # A simple wrapper around the command line admix utility. This takes
+  # strings, passes them to the admix command, and then returns its
+  # output as a string.
   class Wrapper
     def self.call args
       Tempfile.open 'admix.loc' do |loc|
