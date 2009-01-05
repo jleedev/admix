@@ -1,0 +1,23 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: fix the spec
+desc: |-
+  We're uploading data as files, but our spec is expecting strings. This is
+  not trivial to fix, which indicates to me that we should learn more RSpec
+  and then make our spec actually drive our development.
+type: :bugfix
+component: AdmixWeb
+release: 
+reporter: Steven Dee <steve@smartercode.net>
+status: :unstarted
+disposition: 
+creation_time: 2009-01-05 03:14:54.529943 Z
+references: []
+
+id: c44e9c2439a6b9006e7dde0c5e6cc0fe20a8699c
+log_events: 
+- - 2009-01-05 03:15:28.949864 Z
+  - Steven Dee <steve@smartercode.net>
+  - created
+  - CleRB meets soon =p
+git_branch: 
+claimer: 

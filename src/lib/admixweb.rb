@@ -16,7 +16,9 @@ module Admix
 
   post '/admix' do |*args|
     begin
-      result = Wrapper.call :loc => params[:loc], :ped => params[:ped]
+      loc = params[:loc][:tempfile].read
+      ped = params[:ped][:tempfile].read
+      result = Wrapper.call :loc => loc, :ped => ped
       case params[:type]
       when "html"
         content_type 'text/html'
