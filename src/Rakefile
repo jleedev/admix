@@ -3,10 +3,6 @@ require 'spec/rake/spectask'
 
 task :default => :runserver
 
-task :runserver => 'spec' do
-  sh 'bin/admixweb'
-end
-
 desc "Verify our specification"
 Spec::Rake::SpecTask.new 'spec' => 'bin/admix' do |t|
   t.spec_files = FileList['spec/*_spec.rb']
@@ -17,8 +13,12 @@ file 'orig/admix' do
   sh 'cd orig; make'
 end
 
-file 'bin/admix' => 'orig/admix' do
-  cp 'orig/admix', 'bin/'
+file 'bin/admix' => ['orig/admix','bin'] do
+  cp 'orig/admix', 'bin/admix'
+end
+
+file 'bin' do
+  mkdir 'bin'
 end
 
 task :clean do
