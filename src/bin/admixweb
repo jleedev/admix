@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-pwd = File.dirname(__FILE__)
-
-ENV['PATH'] = [pwd, ENV['PATH']].join ':'
-
-$: << File.join(pwd, %w(.. lib))
-
-load 'admixweb.rb'
