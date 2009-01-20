@@ -11,7 +11,7 @@ Merb::Config.use do |c|
   c[:session_store] = 'cookie'  # can also be 'memory', 'memcache', 'container', 'datamapper
   
   # cookie session store configuration
-  c[:session_secret_key]  = 'bd14975894c37f89cc53e617357ae5e37201e29c'  # required for cookie session store
+  c[:session_secret_key]  = 'cce46debaedf0e06cac708665bfa981bac4d5cb2'  # required for cookie session store
   c[:session_id_key] = '_admixweb_session_id' # cookie session id key, defaults to "_session_id"
 end
  
