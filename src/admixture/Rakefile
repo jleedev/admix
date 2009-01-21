@@ -1,7 +1,7 @@
 require 'rake'
 require 'spec/rake/spectask'
 
-task :default => :runserver
+task :default => :spec
 
 desc "Verify our specification"
 Spec::Rake::SpecTask.new 'spec' => 'bin/admix' do |t|
