@@ -1,7 +1,7 @@
 class CreateAlleleFrequencies < ActiveRecord::Migration
   def self.up
     create_table :allele_frequencies do |t|
-      t.double :freq
+      t.float :freq
       t.integer :population_number
       t.belongs_to :marker
 
