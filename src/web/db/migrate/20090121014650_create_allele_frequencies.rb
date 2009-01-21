@@ -3,6 +3,7 @@ class CreateAlleleFrequencies < ActiveRecord::Migration
     create_table :allele_frequencies do |t|
       t.double :freq
       t.integer :population_number
+      t.belongs_to :marker
 
       t.timestamps
     end

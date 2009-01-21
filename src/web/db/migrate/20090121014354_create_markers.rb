@@ -2,6 +2,7 @@ class CreateMarkers < ActiveRecord::Migration
   def self.up
     create_table :markers do |t|
       t.string(16) :name
+      t.belongs_to :locus_file
 
       t.timestamps
     end
