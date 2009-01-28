@@ -1,4 +1,4 @@
-<table>
+<table border>
   <tr>
     <th>Marker file name
     <th>Created by
@@ -7,7 +7,7 @@
     <th>Last modified
 <% for f in @files %>
   <tr>
-    <td><%= f.name %>
+    <td><%= link_to f.name, :controller => "marker_file", :action => "show", :id => f.id %>
     <td><%= if f.user then f.user.name else "nil" end %>
     <td><%= f.marker.length %>
     <td><%= f.population %>

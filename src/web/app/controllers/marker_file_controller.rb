@@ -11,4 +11,9 @@ class MarkerFileController < ApplicationController
       redirect_to :action => :index
     end
   end
+
+  def show
+    @title = "View marker file"
+    @locus_file = LocusFile.find_by_id params[:id]
+  end
 end
