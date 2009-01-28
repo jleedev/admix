@@ -22,8 +22,8 @@ class MarkerFileController < ApplicationController
     marker = Marker.new params[:marker]
     marker.locus_file = @locus_file
     marker.save
-    1.upto @locus_file.population do |i|
-      f = AlleleFrequency.new :marker => marker, :population_number => i, :freq => 0
+    params[:allele_frequency].each do |k,v|
+      f = AlleleFrequency.new :marker => marker, :population_number => k.to_i, :freq => v[:freq]
       f.save
     end
     redirect_to :action => :show, :id => @locus_file.id

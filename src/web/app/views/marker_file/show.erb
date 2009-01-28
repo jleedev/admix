@@ -15,8 +15,11 @@
   <tr>
     <td colspan="0">
       <% form_for :marker, :url => { :action => :create_marker, :id => @locus_file.id } do |f| %>
-        <%= f.label :name, "Add marker" %>
-        <%= f.text_field :name, :size => 8 %>
         <%= submit_tag 'Add' %>
+        <%= f.text_field :name, :size => 8 %><br>
+        <% 1.upto @locus_file.population do |i| %>
+          <td>
+          <%= text_field "allele_frequency[#{i}]", :freq, :size => 4 %>
+        <% end %>
       <% end %>
 </table>
