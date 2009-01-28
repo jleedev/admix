@@ -8,7 +8,7 @@
 <% for f in @files %>
   <tr>
     <td><%= f.name %>
-    <td><%= f.user.name %>
+    <td><%= if f.user then f.user.name else "nil" end %>
     <td><%= f.marker.length %>
     <td><%= f.population %>
     <td><%= f.updated_at %>

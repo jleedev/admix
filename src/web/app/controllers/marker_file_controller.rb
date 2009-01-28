@@ -6,5 +6,9 @@ class MarkerFileController < ApplicationController
 
   def create
     @title = "Create marker file"
+    @locus_file = LocusFile.new params[:locus_file]
+    if request.post? and @locus_file.save
+      redirect_to :action => :index
+    end
   end
 end
