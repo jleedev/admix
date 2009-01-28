@@ -16,4 +16,12 @@ class MarkerFileController < ApplicationController
     @locus_file = LocusFile.find_by_id params[:id]
     @title = "Marker file \"#{@locus_file.name}\""
   end
+
+  def create_marker
+    @locus_file = LocusFile.find_by_id params[:id]
+    marker = Marker.new params[:marker]
+    marker.locus_file = @locus_file
+    marker.save
+    redirect_to :action => :show, :id => @locus_file.id
+  end
 end

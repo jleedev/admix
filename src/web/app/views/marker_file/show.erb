@@ -13,5 +13,10 @@
     <% end %>
 <% end %>
   <tr>
-    <td colspan="0"><%= link_to "Add marker", :controller => 'marker_file', :action => 'create_marker', :id => @locus_file.id %>
+    <td colspan="0">
+      <% form_for :marker, :url => { :action => :create_marker, :id => @locus_file.id } do |f| %>
+        <%= f.label :name, "Add marker" %>
+        <%= f.text_field :name, :size => 8 %>
+        <%= submit_tag 'Add' %>
+      <% end %>
 </table>
