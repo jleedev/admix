@@ -1,9 +1,11 @@
 <!doctype html>
 <title>Admix - <%= @title %></title>
+
 <% unless flash.empty? %>
   <% for k,v in flash %>
     <div class="flash <%= k %>"><%= v %></div>
   <% end %>
 <% end %>
+
 <h1><%= @title %></h1>
 <%= yield %>

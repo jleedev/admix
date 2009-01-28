@@ -3,4 +3,8 @@ class MarkerFileController < ApplicationController
     @title = "Marker files"
     @files = LocusFile.find :all, :order => 'updated_at DESC'
   end
+
+  def create
+    @title = "Create marker file"
+  end
 end
