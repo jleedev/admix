@@ -7,7 +7,7 @@
 <% @locus_file.marker.each do |m| %>
   <tr>
     <td><%= m.name %>
-    <% m.allele_frequency.each do |a| %>
+    <% m.allele_frequency.sort_by(&:population_number).each do |a| %>
       <td>
       <%= a.freq %>
     <% end %>
