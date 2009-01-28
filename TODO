@@ -1,4 +1,6 @@
 * Marker file creation tool
+  - needs ability to edit
+  - validation
 * Ability to save and share marker files
 * Save the report and show it in multiple formats
 * Triangle plots or histograms
