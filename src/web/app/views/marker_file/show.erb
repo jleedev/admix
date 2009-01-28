@@ -1,1 +1,15 @@
 <%= @locus_file.name %>
+
+<table border>
+  <tr>
+    <th>Name
+    <% 1.upto @locus_file.population do |i| %>
+    <th>Population <%= i %>
+    <% end %>
+<% @locus_file.marker.each do |m| %>
+  <tr>
+    <td><%= m.name %>
+<% end %>
+  <tr>
+    <td colspan="0"><%= link_to "Add marker", :controller => 'marker_file', :action => 'create_marker', :id => @locus_file.id %>
+</table>
