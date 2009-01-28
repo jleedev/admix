@@ -1,6 +1,6 @@
 <!doctype html>
 <title>Admix - <%= @title %></title>
-
+<%= stylesheet_link_tag "application" %>
 <% unless flash.empty? %>
   <% for k,v in flash %>
     <div class="flash <%= k %>"><%= v %></div>
