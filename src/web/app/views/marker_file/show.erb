@@ -9,6 +9,10 @@
 <% @locus_file.marker.each do |m| %>
   <tr>
     <td><%= m.name %>
+    <% m.allele_frequency.each do |a| %>
+      <td>
+      <%= a.freq %>
+    <% end %>
 <% end %>
   <tr>
     <td colspan="0"><%= link_to "Add marker", :controller => 'marker_file', :action => 'create_marker', :id => @locus_file.id %>
