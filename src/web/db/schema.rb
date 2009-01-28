@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090121014650) do
+ActiveRecord::Schema.define(:version => 20090128221042) do
 
   create_table "allele_frequencies", :force => true do |t|
     t.float    "freq"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20090121014650) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "markers", :force => true do |t|
