@@ -1,0 +1,19 @@
+<!doctype html>
+<title>Marker files</title>
+<h1>Marker files</h1>
+<table>
+  <tr>
+    <th>Marker file name
+    <th>Created by
+    <th>Number of markers
+    <th>Number of populations
+    <th>Last modified
+<% for f in @files %>
+  <tr>
+    <td><%= f.name %>
+    <td><%= f.user.name %>
+    <td><%= f.marker.length %>
+    <td><%= f.population %>
+    <td><%= f.updated_at %>
+<% end %>
+</table>
