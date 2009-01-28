@@ -13,7 +13,7 @@ class MarkerFileController < ApplicationController
   end
 
   def show
-    @title = "View marker file"
     @locus_file = LocusFile.find_by_id params[:id]
+    @title = "Marker file \"#{@locus_file.name}\""
   end
 end
