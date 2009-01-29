@@ -1,3 +1,9 @@
 .fieldWithErrors label, .errorExplanation h2 {
   color: red;
+  background: white;
+}
+
+.flash.error {
+  color: red;
+  background: white;
 }
