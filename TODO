@@ -1,7 +1,8 @@
 * Marker file creation tool
   - needs ability to edit
   - validation
-* Ability to save and share marker files
+  - import and export
+  - find and use a marker file in your job
 * Save the report and show it in multiple formats
 * Triangle plots or histograms
 * User logins, record usage/statistics
