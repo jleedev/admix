@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20090216012953) do
     t.integer  "user_id"
     t.string   "name"
     t.text     "data"
-    t.integer  "num_alleles"
+    t.integer  "num_markers"
     t.integer  "num_rows"
     t.datetime "created_at"
     t.datetime "updated_at"

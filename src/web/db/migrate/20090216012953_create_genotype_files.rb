@@ -6,7 +6,7 @@ class CreateGenotypeFiles < ActiveRecord::Migration
       t.string :name
       t.text :data
 
-      t.integer :num_alleles
+      t.integer :num_markers
       t.integer :num_rows
 
       t.timestamps
