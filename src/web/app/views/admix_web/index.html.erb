@@ -1,0 +1,19 @@
+<table border>
+  <tr>
+    <th>Genotype file
+    <th>Created by
+    <th>Number of markers
+    <th>Number of rows
+    <th>Last modified
+<% @genotype_files.each do |f| %>
+  <tr>
+    <td><%= link_to f.name, :controller => "marker_file", :action => "show", :id => f.id %>
+    <td><%= if f.user then f.user.name else "nil" end %>
+    <td><%= f.num_markers %>
+    <td><%= f.num_rows %>
+    <td><%= f.updated_at %>
+<% end %>
+</table>
+
+<h2>New genotype file</h2>
+<%= link_to "Upload...", :controller => "admix_web", :action => "create" %>
