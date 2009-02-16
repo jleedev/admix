@@ -9,12 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090128221042) do
+ActiveRecord::Schema.define(:version => 20090216012953) do
 
   create_table "allele_frequencies", :force => true do |t|
     t.float    "freq"
     t.integer  "population_number"
     t.integer  "marker_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "genotype_files", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "data"
+    t.integer  "num_alleles"
+    t.integer  "num_rows"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
