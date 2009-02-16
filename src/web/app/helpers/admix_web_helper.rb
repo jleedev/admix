@@ -1,0 +1,2 @@
+module AdmixWebHelper
+end

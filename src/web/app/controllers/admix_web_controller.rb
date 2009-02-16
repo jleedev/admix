@@ -1,0 +1,2 @@
+class AdmixWebController < ApplicationController
+end
