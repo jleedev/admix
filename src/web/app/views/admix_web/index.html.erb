@@ -1,3 +1,5 @@
+<h2>Genotype files</h2>
+
 <table border>
   <tr>
     <th>Genotype file
@@ -7,7 +9,7 @@
     <th>Last modified
 <% @genotype_files.each do |f| %>
   <tr>
-    <td><%= link_to f.name, :controller => "marker_file", :action => "show", :id => f.id %>
+    <td><%= link_to f.name, :controller => "admix_web", :action => "show", :id => f.id %>
     <td><%= if f.user then f.user.name else "nil" end %>
     <td><%= f.num_markers %>
     <td><%= f.num_rows %>
@@ -17,3 +19,8 @@
 
 <h2>New genotype file</h2>
 <%= link_to "Upload...", :controller => "admix_web", :action => "create" %>
+
+<h2>Jobs</h2>
+
+<h2>New job</h2>
+<%= link_to "New job...", :controller => "admix_web", :action => "create_job" %>

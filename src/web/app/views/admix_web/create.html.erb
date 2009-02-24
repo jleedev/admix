@@ -1,0 +1,12 @@
+<%= error_messages_for :genotype_file %>
+<% form_for :genotype_file, :html => {:multipart => true} do |f| %>
+  <dl>
+    <dt><%= f.label :name %>
+    <dd><%= f.text_field :name %>
+
+    <dt><%= f.label :data %>
+    <dd><%= f.file_field :data %>
+
+    <dd> <%= submit_tag %>
+  </dl>
+<% end %>
