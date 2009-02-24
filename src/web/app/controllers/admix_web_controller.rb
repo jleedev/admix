@@ -2,6 +2,7 @@ class AdmixWebController < ApplicationController
   def index
     @title = "Admix web"
     @genotype_files = GenotypeFile.find :all, :order => 'updated_at DESC'
+    @jobs = Job.find :all, :order => 'updated_at DESC'
   end
 
   def create
@@ -20,7 +21,11 @@ class AdmixWebController < ApplicationController
 
   def create_job
     @title = "Create job"
+    locus_file = LocusFile.find_by_id params[:job][:locus_file_id] if params[:job]
+    genotype_file = GenotypeFile.find_by_id params[:job][:genotype_file_id] if params[:job]
     @job = Job.new params[:job]
+    @job.locus_file_id = locus_file
+    @job.genotype_file_id = genotype_file
     if request.post? and @job.save
       redirect_to :action => :index
     end

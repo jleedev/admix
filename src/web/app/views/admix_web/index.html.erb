@@ -22,5 +22,21 @@
 
 <h2>Jobs</h2>
 
+<table border>
+  <tr>
+    <th>Results
+    <th>Marker file
+    <th>Genotype file
+    <th>Last modified
+<% @jobs.each do |f| %>
+  <tr>
+    <td><%= link_to f.id, :controller => "admix_web", :action => "show_job", :id => f.id %>
+    <td><%= f.locus_file.name %>
+    <td><%= f.genotype_file.name %>
+    <td><%= f.updated_at %>
+<% end %>
+</table>
+
+
 <h2>New job</h2>
 <%= link_to "New job...", :controller => "admix_web", :action => "create_job" %>

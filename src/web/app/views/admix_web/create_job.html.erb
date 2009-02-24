@@ -1,0 +1,15 @@
+<%= error_messages_for :job %>
+<% form_for :job do |f| %>
+  <dl>
+    <dt><%= f.label :locus_file_id %>
+    <dd><%= f.select(:locus_file_id, LocusFile.find(:all).map { |p|
+      [p.name,p.id] }) %>
+
+
+    <dt><%= f.label :genotype_file_id %>
+    <dd><%= f.select(:genotype_file_id, GenotypeFile.find(:all).map { |p|
+      [p.name,p.id] }) %>
+
+    <dd> <%= submit_tag %>
+  </dl>
+<% end %>
