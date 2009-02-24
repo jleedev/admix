@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090224065233) do
+ActiveRecord::Schema.define(:version => 20090224065741) do
 
   create_table "allele_frequencies", :force => true do |t|
     t.float    "freq"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20090224065233) do
   create_table "jobs", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "locus_file_id"
+    t.integer  "genotype_file_id"
+    t.text     "results"
   end
 
   create_table "locus_files", :force => true do |t|
