@@ -1,3 +1,6 @@
+$: << '../admixture/lib'
+require 'admix'
+
 class AdmixWebController < ApplicationController
   def index
     @title = "Admix web"
@@ -21,13 +24,25 @@ class AdmixWebController < ApplicationController
 
   def create_job
     @title = "Create job"
-    locus_file = LocusFile.find_by_id params[:job][:locus_file_id] if params[:job]
-    genotype_file = GenotypeFile.find_by_id params[:job][:genotype_file_id] if params[:job]
-    @job = Job.new params[:job]
-    @job.locus_file_id = locus_file
-    @job.genotype_file_id = genotype_file
-    if request.post? and @job.save
-      redirect_to :action => :index
+    if request.post?
+      locus_file = LocusFile.find_by_id params[:job][:locus_file_id] if params[:job]
+      genotype_file = GenotypeFile.find_by_id params[:job][:genotype_file_id] if params[:job]
+      @job = Job.new params[:job]
+      @job.locus_file_id = locus_file
+      @job.genotype_file_id = genotype_file
+      begin
+        @job.execute
+      rescue Admix::AdmixError => e
+        @job.results = e.message
+      end
+      if @job.save
+        redirect_to :action => :index
+      end
     end
+  end
+
+  def show_job
+    @job = Job.find_by_id params[:id]
+    @title = "Job \"#{@job.name}\""
   end
 end
