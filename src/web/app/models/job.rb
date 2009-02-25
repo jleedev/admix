@@ -7,7 +7,7 @@ class Job < ActiveRecord::Base
   validates_presence_of :locus_file, :genotype_file
 
   def execute
-    results = Admix::Wrapper.call :loc => locus_file.export, :ped => genotype_file.data
+    self.results = Admix::Wrapper.call :loc => locus_file.export, :ped => genotype_file.data
   end
 
   def name
