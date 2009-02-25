@@ -3,6 +3,6 @@ class Marker < ActiveRecord::Base
   has_many :allele_frequency
 
   def export
-    "#{name}\n#{(allele_frequency.map &:freq).join ' '}"
+    "#{name}\n0 #{(allele_frequency.map &:freq).join ' '}\n1 #{(allele_frequency.map &:freq_comp).join ' '}"
   end
 end
