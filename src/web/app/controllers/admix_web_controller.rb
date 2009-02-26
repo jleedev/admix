@@ -1,4 +1,3 @@
-$: << '../admixture/lib'
 require 'admix'
 
 class AdmixWebController < ApplicationController

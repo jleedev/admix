@@ -1,3 +1,4 @@
+* Make admix-rails properly find and run admix-wrapper
 * Marker file creation tool
   - needs ability to edit
   - validation
